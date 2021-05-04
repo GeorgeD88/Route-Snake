@@ -1,4 +1,5 @@
 from credentials import *
+from plus_codes import *
 # from openlocationcode import openlocationcode
 import requests
 import json
@@ -9,15 +10,15 @@ place_search_endpoint = "https://maps.googleapis.com/maps/api/place/findplacefro
 "json?inputtype=textquery&%skey=" + PLACES_API_KEY
 
 
-def search_place(place_name: str, raw_parameters: list = {"fields": ['name', 'formatted_address'], "basic": ['plus_code'],
-                 "locationbias": 'circle:%u@%f,%f' % (2000, 28.593390684212828, -81.19975794956638)}) -> dict:
+def search_place(place_name: str, raw_parameters: list = {"fields": ['name', 'plus_code'],
+                 "locationbias": 'circle:%u@%f,%f' % (2000, UCF_COORDS[0], UCF_COORDS[1])}) -> dict:
     """
     This function searches a place based on text input and parameters
 
     # TODO: CONTINUE FILLING OUT THE DOCSTRING LATER
     Args:
         place_name (str): [description]
-        parameters (list, optional): [description]. Defaults to {"fields": ['name', 'formatted_address'], "basic": ['plus_code'], "locationbias": 'circle:%u@%f,%f' % (2000, 28.593390684212828, -81.19975794956638)}.
+        parameters (list, optional): [description]. Defaults to {"fields": ['name', 'formatted_address'], "basic": ['plus_code'], "locationbias": 'circle:%u@%f,%f' % (RADIUS=2000, LATITUDE, LONGITUDE)}.
 
     Raises:
         Exception: [description]
@@ -28,8 +29,8 @@ def search_place(place_name: str, raw_parameters: list = {"fields": ['name', 'fo
     """
 
     raw_parameters['input'] = place_name
-    if 'plus_code' not in raw_parameters['basic']:
-        parameters.append('plus_code')
+    # if 'plus_code' not in raw_parameters['fields']:
+    #     raw_parameters['fields'].append('plus_code')
 
     # constructs the parameters portion of the HTTP request
     parameters = ''
