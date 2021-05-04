@@ -15,12 +15,3 @@ dismatrix_parameters = {}
 # Directions API
 directions_endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?"
 directions_parameters = {}
-
-
-# returns a series of coordinates as a single string after lossy compression
-def polyline():
-    """
-        Returns a series of coordinates as a single string after lossy compression...
-
-    """
-    pass
