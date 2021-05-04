@@ -12,7 +12,7 @@ place_search_endpoint = "https://maps.googleapis.com/maps/api/place/findplacefro
 "json?inputtype=textquery&%skey=" + PLACES_API_KEY
 
 
-def search_place(place_name: str, raw_parameters: list = {"fields": ['name', 'plus_code'],
+def search_places(place_name: str, raw_parameters: list = {"fields": ['name', 'plus_code'],
                  "locationbias": 'circle:%u@%f,%f' % (2000, UCF_COORDS[0], UCF_COORDS[1])}) -> dict:
     """
     This function searches a place based on text input and parameters
