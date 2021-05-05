@@ -37,7 +37,7 @@ def find_plus_code(place_name: str, raw_parameters: list = {"fields": ['name', '
         str: [description]
 
     """
-    # if the 'fields' key doesn't already exist we'll get a key error
+    # if the 'fields' key doesn't already exist we'll get a KeyError
     try:
         # appends 'plus_code' to the field parameter if it doesn't exist
         if 'plus_code' not in raw_parameters['fields']:
