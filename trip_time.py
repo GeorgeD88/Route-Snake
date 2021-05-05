@@ -37,6 +37,12 @@ def find_plus_code(place_name: str, raw_parameters: list = {"fields": ['name', '
         str: [description]
 
     """
-    if 'plus_code' not in raw_parameters['fields']:
-        raw_parameters['fields'].append('plus_code')
+    # if the 'fields' key doesn't already exist we'll get a key error
+    try:
+        # appends 'plus_code' to the field parameter if it doesn't exist
+        if 'plus_code' not in raw_parameters['fields']:
+            raw_parameters['fields'].append('plus_code')
+    except KeyError:
+        # if not even the field parameter itself exists, it creates it with 'plus_code'
+        raw_parameters['fields'] = ['plus_code']
     return search_places(place_name, raw_parameters)['candidates'][0]['plus_code']['global_code']
